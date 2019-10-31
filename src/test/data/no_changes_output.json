@@ -1,0 +1,19 @@
+{
+    "policy_action": "allow",
+    "policy_name": "secured ",
+    "resource_changes": [
+        {
+            "account": "demo",
+            "action": "",
+            "changes": [],
+            "domain": "cloud:aws-west",
+            "is_new": false,
+            "kind": "Deployment",
+            "name": "hello-octarine",
+            "namespace": "hello-octarine",
+            "octarineName": "",
+            "policy_id": "",
+            "time": "2019-10-24T18:25:29.576373598Z"
+        }
+    ]
+}

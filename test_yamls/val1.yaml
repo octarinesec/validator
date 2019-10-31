@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-octarine
+  namespace: hello-octarine
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-octarine
+  template:
+    metadata:
+      labels:
+        app: "{{CF_REPO_NAME}}"
+    spec:
+      serviceAccountName: octarine
+      hostNetwork: true
+      containers:
+        - name: hello-octarine
+          image: "octarinesec/hello-octarine:{{CF_BRANCH_TAG_NORMALIZED}}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MESSAGE
+              value: Octarine GuardRail Wow!
+          securityContext:
+            privileged: true

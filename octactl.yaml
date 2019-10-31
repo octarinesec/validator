@@ -1,0 +1,13 @@
+api_host: main.octarinesec.com
+api_port: 443
+config_version: "19.0"
+embedded_ip: true
+k8s_namespace: octarine-dataplane
+long_lived: false
+restful_report: false
+session: ""
+use_octarine_encryption: true
+use_quotas: false
+user: creator
+version_tag: "19.0"
+workload_version: "1.0"

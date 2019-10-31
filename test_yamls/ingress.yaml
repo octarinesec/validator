@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: hello-octarine
+  namespace: hello-octarine
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: hello-octarine.octarinesec.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hello-octarine
+              servicePort: 8080
