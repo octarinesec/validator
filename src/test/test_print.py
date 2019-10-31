@@ -31,15 +31,36 @@ def print_with_result(mocker):
     return print_results(config, violation).split('\n')
 
 
-def test_print_results_with_no_violations(mocker):
+@pytest.fixture
+def print_with_no_result(mocker):
+    """ The expected result for this setup should look like
+    ####################################################################################################
+    #                                      No Violations Detected                                      #
+    ####################################################################################################
+    """
     config = mocker.MagicMock()
     violation = mocker.MagicMock()
     violation.summary.get = mocker.MagicMock(return_value=[])
-    rst = print_results(config, violation).split('\n')
-    assert len(rst[0]) == DEFAULT_RAW_SIZE
-    assert len(rst[1]) == DEFAULT_RAW_SIZE
-    assert SUCCESS_MESSAGE in rst[1]
+    return print_results(config, violation).split('\n')
 
 
-def test_print_results_with_violatoin_header_footer_size(print_with_result):
-    assert len(print_with_result[0]) == len("Some summary table should be here")
+def test_print_results_header_footer_with_no_violations(print_with_no_result):
+    assert len(print_with_no_result[0]) == DEFAULT_RAW_SIZE
+    assert len(print_with_no_result[-1]) == DEFAULT_RAW_SIZE
+
+
+def test_print_results_message_with_no_violations(print_with_no_result):
+    assert SUCCESS_MESSAGE in print_with_no_result[1]
+
+
+def test_print_results_with_violations_structure(print_with_result):
+    " 4th line should be footer"
+    assert "######" in print_with_result[4]
+    " 5th  and 6th should be newline "
+    assert "" in print_with_result[5]
+    " Last line should be new line"
+    assert "" in print_with_result[-1]
+
+
+def test_print_results_with_violations_center_alignment(print_with_result):
+    assert len(print_with_result[1]) == len(print_with_result[0]) - 1
