@@ -14,7 +14,7 @@ def test_validate_config_with_env_var():
     os.environ['OCTARINE_ACCOUNT'] = "some_account"
     os.environ['OCTARINE_SESSION_ID'] = "some_session_id"
     os.environ['OCTARINE_SESSION_ACCESSJWT'] = "some_session_access_jwt"
-    os.environ['OBJECT_FILE'] = "some_file"
+    os.environ['OBJECT_DIR'] = "some_file"
     cfg = SetConfig()
     assert isinstance(cfg, SetConfig)
 

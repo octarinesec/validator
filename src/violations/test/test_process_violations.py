@@ -1,5 +1,6 @@
 import pytest
 import json
+import os
 from cmd_run.octactl import Octactl
 from violations.process_violations import ProcessViolations
 from violations.violations_list import ViolationsList
@@ -7,10 +8,14 @@ from violations.violations_summary import ViolationsSummary
 from pytest_mock import mocker
 
 
-# TODO change path to relative
+FIXTURE_DIR = os.path.join(
+    os.path.dirname(os.path.realpath(__file__)),
+    'data/',
+)
+
 DATA = {
-    'single_resource_change': 'src/test/data/single_resource_ourput.json',
-    'no_resource_change': 'src/test/data/single_resource_ourput.json'
+    'single_resource_change': os.path.join(FIXTURE_DIR, 'single_resource_output.json'),
+    'no_resource_change': os.path.join(FIXTURE_DIR, 'no_changes_output.json')
 }
 
 
