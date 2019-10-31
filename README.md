@@ -11,6 +11,7 @@ Docker image which invokes security script using Octactl
 | OCTARINE_SESSION_ACCESSJWT | Octarine session access JWT                           | Yes      | None    |
 | OBJECT_DIR                 | Directory or file path with the Kubernetes yaml files | Yes      | None    |
 | OCTAINE_POLICY             | Octarine Policy name to use for the validate          | No       | Default |
+| OUTPUT_FILE_PATH           | Path to the output file                               | No       | Default |
 
 
 ## How to generate Octarine session id 

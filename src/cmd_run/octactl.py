@@ -23,6 +23,7 @@ class Octactl():
         return json.loads(result[1])
 
     def _run_with_helm(self):
+        " TODO: test and complete helm"
         chain = helm(self.config.helm()).split(" ") | self.guardrail.run(['-f', '-'])
         try:
             result = chain.run()
