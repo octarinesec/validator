@@ -7,7 +7,7 @@ import json
 
 
 if __name__ == "__main__":
-    "Set the config based on the Environment variable provided at runtime "
+    " Set the config based on the Environment variable provided at runtime "
     config = SetConfig()
     violations = ProcessViolations(config).run()
     if config.output_file():

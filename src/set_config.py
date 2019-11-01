@@ -8,7 +8,8 @@ class SetConfig:
     def validate_config(self):
         ENV_TO_CHECK = ["OCTARINE_ACCOUNT",
                         "OCTARINE_SESSION_ID", "OCTARINE_SESSION_ACCESSJWT", "OBJECT_DIR"]
-        if not all(elem in os.environ for elem in ENV_TO_CHECK):
+
+        if not set(ENV_TO_CHECK).issubset(os.environ):
             print("Missing one or more config variable, please make sure {} is set".format(
                 ','.join(ENV_TO_CHECK)))
             raise SystemExit
