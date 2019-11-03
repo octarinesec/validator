@@ -9,6 +9,7 @@ def validate_config():
         print("Missing one or more config variable, please make sure {} is set".format(
             ','.join(ENV_TO_CHECK)))
         raise SystemExit
+    return True
 
 
 def namespace():
