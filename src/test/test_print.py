@@ -1,6 +1,6 @@
 import pytest
 from pytest_mock import mocker
-from print_result import print_results, DEFAULT_RAW_SIZE, SUCCESS_MESSAGE
+from print_result import print_results, DEFAULT_ROW_SIZE, SUCCESS_MESSAGE
 
 
 @pytest.fixture
@@ -45,8 +45,8 @@ def print_with_no_result(mocker):
 
 
 def test_print_results_header_footer_with_no_violations(print_with_no_result):
-    assert len(print_with_no_result[0]) == DEFAULT_RAW_SIZE
-    assert len(print_with_no_result[-1]) == DEFAULT_RAW_SIZE
+    assert len(print_with_no_result[0]) == DEFAULT_ROW_SIZE
+    assert len(print_with_no_result[-1]) == DEFAULT_ROW_SIZE
 
 
 def test_print_results_message_with_no_violations(print_with_no_result):
