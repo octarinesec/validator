@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+autopep8 = "*"
+pytest = "*"
+pytest-datafiles = "*"
+mock = "*"
+pytest-mock = "*"
+
+[packages]
+plumbum = "*"
+tabulate = "*"
+pyyaml = "*"
+
+
+[requires]
+python_version = "3.7"

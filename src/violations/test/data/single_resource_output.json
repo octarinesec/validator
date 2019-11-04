@@ -1,0 +1,41 @@
+{
+  "policy_name": "DefaultPolicy",
+  "violated_resources": [
+    {
+      "resource_kind": "Deployment",
+      "resource_name": "hello-octarine",
+      "violations": [
+        {
+          "description": "Privileged container: hello-octarine (CIS 1.7.1)",
+          "violation_type": "privileged-container"
+        },
+        {
+          "description": "Share host network container: hello-octarine (CIS 1.7.4)",
+          "violation_type": "share-host-network-container"
+        },
+        {
+          "description": "container hello-octarine capability added: CAP_SYS_ADMIN",
+          "violation_type": "container-sys-admin-cap-added"
+        }
+      ]
+    },
+    {
+      "resource_kind": "Deployment",
+      "resource_name": "hello-octarine",
+      "violations": [
+        {
+          "description": "Privileged container: hello-octarine (CIS 1.7.1)",
+          "violation_type": "privileged-container"
+        },
+        {
+          "description": "Share host network container: hello-octarine (CIS 1.7.4)",
+          "violation_type": "share-host-network-container"
+        },
+        {
+          "description": "container hello-octarine capability added: CAP_SYS_ADMIN",
+          "violation_type": "container-sys-admin-cap-added"
+        }
+      ]
+    }
+  ]
+}
