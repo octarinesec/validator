@@ -1,4 +1,4 @@
-![](./images/logo_print.png =250x)
+<image src="./images/logo_print.png" width="250")
 # Validator
 
 Docker image which invokes security script using Octactl
