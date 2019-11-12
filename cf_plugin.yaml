@@ -1,0 +1,85 @@
+version: "1.0"
+kind: step-type
+metadata:
+  version: 0.0.1
+  name: octarinesec/octarine
+  isPublic: false
+  description: Execute Kubernetes object security scan with Octarine (https://octarinesec.com)
+  sources:
+    - "https://github.com/octarinesec/validator"
+  stage: incubating
+  maintainers:
+    - name: Ram Akuka
+      email: ram@octarinesec.com
+  categories:
+    - security
+  official: false
+  tags: []
+  icon:
+    type: image
+    size:
+      large:
+        url: >-
+          https://raw.githubusercontent.com/octarinesec/validator/master/images/logo_only.png
+  examples:
+    - description: example-1
+      workflow:
+        version: "1.0"
+        steps:
+          security:
+            title: Validating Security By Octarine
+            type: octarinsec/octarine
+            arguments:
+              OCTARINE_ACCOUNT: ${{OCTARINE_ACCOUNT}}
+              OCTARINE_SESSION_ID: ${{OCTARINE_SESSION_ID}}
+              OCTARINE_SESSION_ACCESSJWT: ${{OCTARINE_SESSION_ACCESSJWT}}
+              OBJECT_DIR: ${{OBJECT_DIR}}
+              OCTARINE_API_HOST: main.octarinesec.com
+
+spec:
+  arguments: |-
+    {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "patterns": [],
+      "required": [
+          "OCTARINE_ACCOUNT",
+          "OCTARINE_SESSION_ID",
+          "OCTARINE_SESSION_ACCESSJWT",
+          "OBJECT_DIR"
+      ],
+      "properties": {
+          "OCTARINE_ACCOUNT": {
+              "type": "string",
+              "description": "Octarine account name"
+          },
+          "OCTARINE_SESSION_ID": {
+              "type": "string",
+              "description": "Octarine session ID"
+          },
+          "OCTARINE_SESSION_ACCESSJWT": {
+              "type": "string",
+              "description": "Octarine session access JWT"
+          },
+          "OCTARINE_API_HOST": {
+              "type": "string",
+               "description": "Octrine API Host"
+          },
+          "OBJECT_DIR": {
+              "type": "string",
+              "description": "Directory or file path with the Kubernetes yaml files"
+          }
+      }
+    }
+  steps:
+    main:
+      name: octarinesec/octarine
+      image: octarinesec/validator:0.11
+      environment:
+        - "OCTARINE_ACCOUNT=${{OCTARINE_ACCOUNT}}"
+        - "OCTARINE_SESSION_ID=${{OCTARINE_SESSION_ID}}"
+        - "OCTARINE_SESSION_ACCESSJWT=${{OCTARINE_SESSION_ACCESSJWT}}"
+        - "OBJECT_DIR=${{OBJECT_DIR}}"
+        - "OCTARINE_API_HOST=${{OCTARINE_API_HOST}}"
