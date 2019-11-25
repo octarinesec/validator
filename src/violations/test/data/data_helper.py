@@ -9,15 +9,18 @@ def violations():
     return [
         {
             "description": "Privileged container: hello-octarine (CIS 1.7.1)",
-            "violation_type": "privileged-container"
+            "violation_category": "SecurityContext",
+            "violation_name": "privileged-container"
         },
         {
             "description": "Share host network container: hello-octarine (CIS 1.7.4)",
-            "violation_type": "share-host-network-container"
+            "violation_category": "SecurityContext",
+            "violation_name": "share-host-network-container"
         },
         {
             "description": "container hello-octarine capability added: CAP_SYS_ADMIN",
-            "violation_type": "container-sys-admin-cap-added"
+            "violation_category": "SecurityContext",
+            "violation_name": "container-sys-admin-cap-added"
         }
     ]
 

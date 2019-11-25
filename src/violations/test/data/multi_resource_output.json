@@ -27,6 +27,17 @@
           "violation_name": "Starts with 'a'"
         }
       ]
+    },
+    {
+      "resource_kind": "Ingress",
+      "resource_name": "hello-octarine",
+      "violations": [
+        {
+          "description": "Starts with 'a'",
+          "violation_category": "Custom",
+          "violation_name": "Starts with 'a'"
+        }
+      ]
     }
   ]
 }

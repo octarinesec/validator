@@ -52,7 +52,7 @@ class TestViolationList():
     def test_set_for_single_key(self, new_violations_instance):
         vio = new_violations_instance.violations[data.key()]['violations']
         assert len(vio) == 3
-        assert vio[0] == {'Violation Category': 'Privileged container: hello-octarine (CIS 1.7.1)', 'Violation Type': 'privileged-container'}
+        assert vio[0] == {'Violation Description': 'Privileged container: hello-octarine (CIS 1.7.1)', 'Violation Name': 'privileged-container', 'Violation Category': 'SecurityContext'}
 
     def test_set_for_many_keys(self, new_violations_instance):
         for key in data.keys():
@@ -63,13 +63,14 @@ class TestViolationList():
         assert list(new_violations_instance.get().keys()) == [data.key()]
         assert list(new_violations_instance.get()[data.key()].keys()) == list(data.metadata().keys()) + ['violations']
         assert len(new_violations_instance.get()[data.key()]['violations']) == 3
-        assert new_violations_instance.get()[data.key()]['violations'][0] == {'Violation Category': 'Privileged container: hello-octarine (CIS 1.7.1)', 'Violation Type': 'privileged-container'}
+        assert new_violations_instance.get()[data.key()]['violations'][0] == {
+            'Violation Description': 'Privileged container: hello-octarine (CIS 1.7.1)', 'Violation Name': 'privileged-container', 'Violation Category': 'SecurityContext'}
 
     def test_prtify_output_for_single_key(self, new_violations_instance):
-        expected = "\n".join(['| key   | Violation Type                | Violation Category                                       |',
-                              '|-------+-------------------------------+----------------------------------------------------------|',
-                              '| value | privileged-container          | Privileged container: hello-octarine (CIS 1.7.1)         |',
-                              '| value | share-host-network-container  | Share host network container: hello-octarine (CIS 1.7.4) |',
-                              '| value | container-sys-admin-cap-added | container hello-octarine capability added: CAP_SYS_ADMIN |'])
+        expected = "\n".join(['| key   | Violation Name                | Violation Category   | Violation Description                                    |',
+                              '|-------+-------------------------------+----------------------+----------------------------------------------------------|',
+                              '| value | privileged-container          | SecurityContext      | Privileged container: hello-octarine (CIS 1.7.1)         |',
+                              '| value | share-host-network-container  | SecurityContext      | Share host network container: hello-octarine (CIS 1.7.4) |',
+                              '| value | container-sys-admin-cap-added | SecurityContext      | container hello-octarine capability added: CAP_SYS_ADMIN |'])
 
         assert new_violations_instance.pritify() == expected

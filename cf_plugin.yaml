@@ -3,7 +3,7 @@ kind: step-type
 metadata:
   version: 0.0.1
   name: octarinesec/octarine
-  isPublic: false
+  isPublic: true
   description: Execute Kubernetes object security scan with Octarine (https://octarinesec.com)
   sources:
     - "https://github.com/octarinesec/validator"
@@ -13,14 +13,13 @@ metadata:
       email: ram@octarinesec.com
   categories:
     - security
-  official: false
+  official: true
   tags: []
   icon:
-    type: image
-    size:
-      large:
-        url: >-
-          https://raw.githubusercontent.com/octarinesec/validator/master/images/logo_only.png
+    type: svg
+    url: >-
+      http://assets.octarinesec.com/images/Octarine_logo.svg
+    background: "#FFFFFF"
   examples:
     - description: example-1
       workflow:
@@ -65,11 +64,11 @@ spec:
           },
           "OCTARINE_API_HOST": {
               "type": "string",
-               "description": "Octrine API Host"
+               "description": "Octrine API Host (main.octarinesec.com)"
           },
           "OBJECT_DIR": {
               "type": "string",
-              "description": "Directory or file path with the Kubernetes yaml files"
+              "description": "Directory or file path for the Kubernetes yaml files"
           }
       }
     }
