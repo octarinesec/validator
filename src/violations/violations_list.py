@@ -4,8 +4,9 @@ from tabulate import tabulate
 
 class ViolationsList:
     VIOLATION_MAP = {
-        "Violation Type": 'violation_type',
-        "Violation Category": 'description'
+        "Violation Name": 'violation_name',
+        "Violation Category": 'violation_category',
+        "Violation Description": 'description'
     }
 
     """ 

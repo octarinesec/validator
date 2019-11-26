@@ -1,0 +1,43 @@
+{
+  "errors": [],
+  "policy_name": "DefaultPolicy",
+  "violated_resources": [
+    {
+      "resource_kind": "Deployment",
+      "resource_name": "hello-octarine",
+      "violations": [
+        {
+          "description": "Privileged container: hello-octarine (CIS 1.7.1)",
+          "violation_category": "SecurityContext",
+          "violation_name": "privileged-container"
+        },
+        {
+          "description": "Share host network container: hello-octarine (CIS 1.7.4)",
+          "violation_category": "SecurityContext",
+          "violation_name": "share-host-network-container"
+        },
+        {
+          "description": "container hello-octarine capability added: CAP_SYS_ADMIN",
+          "violation_category": "SecurityContext",
+          "violation_name": "container-sys-admin-cap-added"
+        },
+        {
+          "description": "Starts with 'a'",
+          "violation_category": "Custom",
+          "violation_name": "Starts with 'a'"
+        }
+      ]
+    },
+    {
+      "resource_kind": "Ingress",
+      "resource_name": "hello-octarine",
+      "violations": [
+        {
+          "description": "Starts with 'a'",
+          "violation_category": "Custom",
+          "violation_name": "Starts with 'a'"
+        }
+      ]
+    }
+  ]
+}
