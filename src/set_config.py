@@ -29,6 +29,9 @@ def domain():
 
 
 def file_objects():
+    if not os.path.exists(os.getenv("OBJECT_DIR")):
+        print("Cannot find file or diretory at {}".format(os.getenv("OBJECT_DIR")))
+        raise SystemExit
     return os.getenv("OBJECT_DIR")
 
 
