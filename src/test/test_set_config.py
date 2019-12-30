@@ -34,3 +34,19 @@ def test_domain():
     domain = "domain"
     os.environ["DOMAIN"] = domain
     assert config.domain() == domain
+
+
+def test_none_exists_file_or_directory_file_objects():
+    os.environ["OBJECT_DIR"] = "none_exists_dir"
+    with pytest.raises(SystemExit):
+        config.file_objects()
+
+
+def test_with_existing_file_file_objects():
+    os.environ["OBJECT_DIR"] = "src/test/test_set_config.py"
+    assert config.file_objects() == "src/test/test_set_config.py"
+
+
+def test_with_existing_directory_file_objects():
+    os.environ["OBJECT_DIR"] = "src/test"
+    assert config.file_objects() == "src/test"

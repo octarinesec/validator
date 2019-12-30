@@ -17,3 +17,5 @@ if __name__ == "__main__":
         else:
             print(print_results(config, violations))
         config.exitWithError()
+    else:
+        print("No violations has been detected!")
