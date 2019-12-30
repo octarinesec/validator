@@ -1,0 +1,41 @@
+version: "1.0"
+stages:
+  - "clone"
+  - "build"
+  - "test"
+  - "push"
+steps:
+  CodeClone:
+    type: "git-clone"
+    description: "Cloning main repository..."
+    repo: "octarinesec/validator"
+    revision: "${{CF_BRANCH}}"
+    stage: "clone"
+  ValidatorImage:
+    title: "Building Docker Image"
+    type: "build"
+    image_name: "octarinesec/validator"
+    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+    dockerfile: "Dockerfile"
+    stage: "build"
+  UnitTests:
+    title: "Running Unit Tests"
+    type: "freestyle"
+    image: ${{ValidatorImage}}
+    command:
+      - pipenv run pytest
+    stage: "test"
+  push:
+    title: "Pushing image to Dockerhub"
+    type: "push"
+    image_name: "octarinesec/validator"
+    registry: "dockerhub"
+    candidate: "${{ValidatorImage}}"
+    when:
+      branch:
+        only:
+          - master
+    tags:
+      - "${{CF_BRANCH_TAG_NORMALIZED}}"
+      - "${{CF_REVISION}}"
+    stage: "push"
