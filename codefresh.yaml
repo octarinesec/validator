@@ -22,7 +22,7 @@ steps:
     title: "Running Unit Tests"
     type: "freestyle"
     image: ${{ValidatorImage}}
-    command:
+    commands:
       - pipenv run pytest
     stage: "test"
   push:
