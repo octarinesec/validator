@@ -5,7 +5,7 @@ stages:
   - "test"
   - "push"
 steps:
-  CodeClone:
+  main_clone:
     type: "git-clone"
     description: "Cloning main repository..."
     repo: "octarinesec/validator"
