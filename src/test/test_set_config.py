@@ -10,6 +10,14 @@ def test_validate_config_with_missing_params():
         config.validate_config()
 
 
+def test_validate_config_with_no_input():
+    os.environ['OCTARINE_ACCOUNT'] = "some_account"
+    os.environ['OCTARINE_SESSION_ID'] = "some_session_id"
+    os.environ['OCTARINE_SESSION_ACCESSJWT'] = "some_session_access_jwt"
+    with pytest.raises(SystemExit):
+        config.validate_config()
+
+
 def test_validate_config_with_env_var():
     os.environ['OCTARINE_ACCOUNT'] = "some_account"
     os.environ['OCTARINE_SESSION_ID'] = "some_session_id"
