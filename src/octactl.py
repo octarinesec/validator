@@ -33,18 +33,4 @@ def _run_with_helm():
         (helm["template"][config.helm().split(" ")] > tmp_file_location)()
     except ProcessExecutionError as err:
         print("Fail to run helm with {} parameters. error: {}".format(helm(), err))
-    _clean_three_hyphens_in_first_line(tmp_file_location)
     return _run_octactl_command(tmp_file_location)
-
-
-# This set as a temporary workaround for bug https://octarinesec.atlassian.net/browse/OC-1731
-def _clean_three_hyphens_in_first_line(file):
-    lines = []
-    with open(file, 'r') as fd:
-        lines = fd.readlines()
-        if not lines[0].strip('\n') == '---':
-            return file
-    with open(file, 'w') as fd:
-        lines.remove(lines[0])
-        for line in lines:
-            fd.write(line)
