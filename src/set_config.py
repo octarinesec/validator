@@ -3,11 +3,14 @@ import os
 
 def validate_config():
     ENV_TO_CHECK = ["OCTARINE_ACCOUNT",
-                    "OCTARINE_SESSION_ID", "OCTARINE_SESSION_ACCESSJWT", "OBJECT_DIR"]
+                    "OCTARINE_SESSION_ID", "OCTARINE_SESSION_ACCESSJWT"]
 
     if not set(ENV_TO_CHECK).issubset(os.environ):
-        print("Missing one or more config variable, please make sure {} is set".format(
+        print("Missing one or more Octarine config variable, please make sure {} is set".format(
             ','.join(ENV_TO_CHECK)))
+        raise SystemExit
+    if (not os.getenv("OBJECT_DIR")) and (not os.getenv("HELM_COMMAND")):
+        print("Missing file input to validate, please make sure either FILE_OBJECT or HELM_COMMAND is set")
         raise SystemExit
     return True
 
