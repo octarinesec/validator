@@ -16,7 +16,7 @@ Docker image which invokes security script using Octactl
 
 ### Using Helm 
 [Helm](https://helm.sh/) is a package manager running atop Kubernetes. It allows describing the application structure through convenient helm-charts and managing it with simple commands.
-In oder to validate a helm chart we will need to render the chart using (helm template)[https://v2.helm.sh/docs/helm/#helm-template] and evaluate the output for security risks.
+In oder to validate a helm chart we will need to render the chart using [helm template](https://v2.helm.sh/docs/helm/#helm-template) and evaluate the output for security risks.
 In order for the Validator to render the charts, the full helm command is needed and should be set with `HELM_COMMAND`.
 
 
