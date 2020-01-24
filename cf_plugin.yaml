@@ -75,7 +75,7 @@ spec:
   steps:
     main:
       name: octarinesec/octarine
-      image: octarinesec/validator:0.13
+      image: octarinesec/validator:0.14
       environment:
         - "OCTARINE_ACCOUNT=${{OCTARINE_ACCOUNT}}"
         - "OCTARINE_SESSION_ID=${{OCTARINE_SESSION_ID}}"

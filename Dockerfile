@@ -2,6 +2,7 @@ FROM  python:3.7-alpine
 
 COPY bin/* /bin/
 COPY octactl.yaml /root/.octactl.yaml
+RUN chmod +x /bin/octactl
 
 ADD src /app/
 COPY Pipfile /app/
