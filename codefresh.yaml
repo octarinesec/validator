@@ -15,7 +15,7 @@ steps:
     title: "Building Docker Image"
     type: "build"
     image_name: "octarinesec/validator"
-    tag: "${{CF_BRANCH_TAG_NORMALIZED}}"
+    tag: "${{CF_REVISION}}"
     dockerfile: "Dockerfile"
     stage: "build"
   UnitTests:
@@ -36,6 +36,6 @@ steps:
         only:
           - master
     tags:
-      - "${{CF_BRANCH_TAG_NORMALIZED}}"
+      - "${{CF_RELEASE_TAG}}"
       - "${{CF_REVISION}}"
     stage: "push"
