@@ -16,6 +16,5 @@ if __name__ == "__main__":
                     json.dump(violations.violations_list.get(), fd, indent=4, separators=(',', ': '), sort_keys=True)
         else:
             print(print_results(config, violations))
-        config.exitWithError()
     else:
         print("No violations has been detected!")
