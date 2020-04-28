@@ -25,7 +25,7 @@ steps:
     commands:
       - pipenv run pytest
     stage: "test"
-  push:
+  push_master:
     title: "Pushing image to Dockerhub"
     type: "push"
     image_name: "octarinesec/validator"
@@ -36,6 +36,19 @@ steps:
         only:
           - master
     tags:
-      - "${{CF_RELEASE_TAG}}"
       - "${{CF_REVISION}}"
+    stage: "push"
+  push_release:
+    title: "Pushing image to Dockerhub"
+    type: "push"
+    image_name: "octarinesec/validator"
+    registry: "dockerhub"
+    candidate: "${{ValidatorImage}}"
+    when:
+      condition:
+        all:
+          triggerByRelease: "'${{CF_RELEASE_TAG}}' == 'true'"
+
+    tags:
+      - "${{CF_RELEASE_TAG}}"
     stage: "push"

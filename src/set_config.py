@@ -38,6 +38,13 @@ def file_objects():
     return os.getenv("OBJECT_DIR")
 
 
+def always_display_namespace():
+    if os.getenv("ALWAYS_DISPLAY_NAMESPACE"):
+        return True
+    else:
+        return False
+
+
 def exitWithNoErrors():
     exit(0)
 
