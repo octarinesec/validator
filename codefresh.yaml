@@ -47,7 +47,7 @@ steps:
     when:
       condition:
         all:
-          triggerByRelease: "match('${{CF_RELEASE_TAG}}','^[A-Z]',false )  == 'True'"
+          triggerByRelease: "'${{CF_RELEASE_TAG}}' == 'true'"
 
     tags:
       - "${{CF_RELEASE_TAG}}"
