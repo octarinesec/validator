@@ -39,7 +39,7 @@ session:
 1. Login to [Octarine](https://main.octarinesec.com) web portal.
 2. Go to Administration -> Access Keys on the left panel.  
 ![left-panel](images/Left-panel.png)
-3. Set a name and chose the Read-only on the Create Token fields and click on cerate token  
+1. Set a name and chose the Read-only on the Create Token fields and click on Create    
 ![create-token](images/create-token.png)
 4. Use the copy links on the bottom of the pop-up to get JWT and token session id  
 ![copy token](images/copy-token.png)

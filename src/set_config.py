@@ -40,7 +40,7 @@ def file_objects():
 
 def always_display_namespace():
     if os.getenv("ALWAYS_DISPLAY_NAMESPACE"):
-        return os.getenv("ALWAYS_DISPLAY_NAMESPACE")
+        return True
     else:
         return False
 
