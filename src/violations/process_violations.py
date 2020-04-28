@@ -21,12 +21,12 @@ class ProcessViolations():
                 metadata = {'Name': resource['resource_name'], 'Kind': resource['resource_kind'], 'Namespace': self._namespace(resource), "Filename": resource['file_path']}
                 self.summary.set(violation, metadata, key)
                 self.violations_list.set(violation, metadata, key)
-        self._whitelist_unused_headers()
+        self._whitelist_unused_attributes()
         return self
 
     def _namespace(self, resource):
         if "namespace" in resource:
-            self.namespace_not_none = True
+            self.include_namesapace = True
             return resource['namespace']
         return 'None'
 
