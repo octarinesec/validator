@@ -30,7 +30,7 @@ class ProcessViolations():
             return resource['namespace']
         return 'None'
 
-    def _whitelist_unused_headers(self):
+    def _whitelist_unused_attributes(self):
         if (not self.include_namesapace) and (not config.always_display_namespace()):
             self.attribute_filter.exclude_attributes = "Namespace"
         if config.helm():

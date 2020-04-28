@@ -5,6 +5,10 @@ def metadata():
     return {'key': 'value'}
 
 
+def metadata_with_filtered_data():
+    return {'key': 'value', 'key1': 'value1', 'key2': 'value2'}
+
+
 def violations():
     return [
         {

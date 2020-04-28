@@ -5,6 +5,8 @@
     {
       "resource_kind": "Deployment",
       "resource_name": "hello-octarine",
+      "namespace": "namespace",
+      "file_path": "path/to/file.yaml",
       "violations": [
         {
           "description": "Privileged container: hello-octarine (CIS 1.7.1)",
@@ -30,6 +32,8 @@
     },
     {
       "resource_kind": "Ingress",
+      "namespace": "namespace",
+      "file_path": "path/to/file2.yaml",
       "resource_name": "hello-octarine",
       "violations": [
         {
