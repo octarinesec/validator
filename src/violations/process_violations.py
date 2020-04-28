@@ -16,9 +16,10 @@ class ProcessViolations():
         js = octactl.run_octactl()
         if len(js['violated_resources']) > 0:
             for resource in js['violated_resources']:
+                ns = self._namespace(resource)
                 violation = resource['violations']
-                key = resource['resource_kind'] + ":" + resource['resource_name']
-                metadata = {'Name': resource['resource_name'], 'Kind': resource['resource_kind'], 'Namespace': self._namespace(resource), "Filename": resource['file_path']}
+                key = resource['resource_kind'] + ":" + resource['resource_name'] + ":" + ns
+                metadata = {'Name': resource['resource_name'], 'Kind': resource['resource_kind'], 'Namespace': ns, "Filename": resource['file_path']}
                 self.summary.set(violation, metadata, key)
                 self.violations_list.set(violation, metadata, key)
         self._whitelist_unused_attributes()

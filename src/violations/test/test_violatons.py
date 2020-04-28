@@ -49,7 +49,7 @@ class TestViolationSummary():
         summary = ViolationsSummary(f)
         summary.set(data.violations(), data.metadata_with_filtered_data(), data.key())
         f.exclude_attributes = "key1"
-        assert summary.get() == {'Kind:Name': {'key': 'value', 'key1': 'value1', 'key2': 'value2', 'Violations': 3}}
+        assert summary.get() == {'Kind:Name:Namespace': {'key': 'value', 'key1': 'value1', 'key2': 'value2', 'Violations': 3}}
         expected = "\n".join(['| key   | key2   |   Violations |', '|-------+--------+--------------|', '| value | value2 |            3 |', ])
         assert summary.pritify() == expected
 
@@ -92,7 +92,7 @@ class TestViolationList():
         violations = ViolationsList(f)
         violations.set(data.violations(), data.metadata_with_filtered_data(), data.key())
         f.exclude_attributes = "key1"
-        assert violations.get() == {'Kind:Name': {'key': 'value', 'key1': 'value1', 'key2': 'value2', 'violations': [{'Violation Name': 'privileged-container', 'Violation Category': 'SecurityContext'}, {
+        assert violations.get() == {'Kind:Name:Namespace': {'key': 'value', 'key1': 'value1', 'key2': 'value2', 'violations': [{'Violation Name': 'privileged-container', 'Violation Category': 'SecurityContext'}, {
             'Violation Name': 'share-host-network-container', 'Violation Category': 'SecurityContext'}, {'Violation Name': 'container-sys-admin-cap-added', 'Violation Category': 'SecurityContext'}]}}
         expected = "\n".join(['| key   | key2   | Violation Name                | Violation Category   |',
                               '|-------+--------+-------------------------------+----------------------|',

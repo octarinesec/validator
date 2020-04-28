@@ -30,7 +30,7 @@ def violations():
 
 
 def key():
-    return "Kind:Name"
+    return "Kind:Name:Namespace"
 
 
 def keys():
