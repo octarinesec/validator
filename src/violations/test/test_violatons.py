@@ -26,7 +26,7 @@ class TestViolationSummary():
         assert type(new_summary_instance.summary) == dict
 
     def test_set_for_single_key(self, new_summary_instance):
-        assert new_summary_instance.summary[data.key()] == {**data.metadata(), 'Number': 3}
+        assert new_summary_instance.summary[data.key()] == {**data.metadata(), 'Violations': 3}
 
     def test_set_for_many_keys(self, new_summary_instance):
         for key in data.keys():
@@ -34,11 +34,11 @@ class TestViolationSummary():
         assert len(new_summary_instance.summary.keys()) == len(data.keys())+1
 
     def test_get(self, new_summary_instance):
-        assert new_summary_instance.get() == {data.key(): {**data.metadata(), 'Number': 3}}
+        assert new_summary_instance.get() == {data.key(): {**data.metadata(), 'Violations': 3}}
 
     def test_prtify_output_for_single_key(self, new_summary_instance):
         "Output: plain with headers"
-        expected = "\n".join(['| key   |   Number |', '|-------+----------|', '| value |        3 |', ])
+        expected = "\n".join(['| key   |   Violations |', '|-------+----------|', '| value |        3 |', ])
         assert new_summary_instance.pritify() == expected
 
 
@@ -72,5 +72,4 @@ class TestViolationList():
                               '| value | privileged-container          | SecurityContext      | Privileged container: hello-octarine (CIS 1.7.1)         |',
                               '| value | share-host-network-container  | SecurityContext      | Share host network container: hello-octarine (CIS 1.7.4) |',
                               '| value | container-sys-admin-cap-added | SecurityContext      | container hello-octarine capability added: CAP_SYS_ADMIN |'])
-
         assert new_violations_instance.pritify() == expected

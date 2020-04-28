@@ -2,13 +2,15 @@ import set_config as config
 import octactl
 from violations.violations_list import ViolationsList
 from violations.violations_summary import ViolationsSummary
+from violations.attribute_filter import AttributeFilter
 
 
 class ProcessViolations():
     def __init__(self):
-        self.summary = ViolationsSummary()
-        self.violations_list = ViolationsList()
-        self.namespace_not_none = False
+        self.attribute_filter = AttributeFilter()
+        self.summary = ViolationsSummary(self.attribute_filter)
+        self.violations_list = ViolationsList(self.attribute_filter)
+        self.include_namesapace = False
 
     def run(self):
         js = octactl.run_octactl()
@@ -29,9 +31,7 @@ class ProcessViolations():
         return 'None'
 
     def _whitelist_unused_headers(self):
-        if (not self.namespace_not_none) and (not config.always_display_namespace()):
-            self.violations_list.exclude_fields = "Namespace"
-            self.summary.exclude_fields = "Namespace"
+        if (not self.include_namesapace) and (not config.always_display_namespace()):
+            self.attribute_filter.exclude_attributes = "Namespace"
         if config.helm():
-            self.violations_list.exclude_fields = "Filename"
-            self.summary.exclude_fields = "Filename"
+            self.attribute_filter.exclude_attributes = "Filename"

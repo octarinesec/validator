@@ -1,13 +1,11 @@
 
 from tabulate import tabulate
-from violations.violations import Violations
 
 
-class ViolationsList(Violations):
+class ViolationsList():
     VIOLATION_MAP = {
         "Violation Name": 'violation_name',
-        "Violation Category": 'violation_category',
-        "Violation Description": 'description'
+        "Violation Category": 'violation_category'
     }
 
     """
@@ -26,9 +24,9 @@ class ViolationsList(Violations):
 
     """
 
-    def __init__(self):
+    def __init__(self, f):
+        self.filter = f
         self.violations = {}
-        self._exclude_fields = []
 
     def set(self, violations, metadata, key):
         # Define the violation metadata from VIOLATION_MAP constant"
@@ -48,7 +46,7 @@ class ViolationsList(Violations):
         violations_list = [self._setHeaders()]
         for uniq_key in violations_for_display.keys():
             # Remove the excluded fields
-            for exc in self._exclude_fields:
+            for exc in self.filter.exclude_attributes:
                 violations_for_display[uniq_key].pop(exc)
             key_violations = violations_for_display[uniq_key].pop('violations')
             for i in key_violations:
@@ -62,5 +60,5 @@ class ViolationsList(Violations):
         # Find the violation key - where the value is an array
         array_key = list({k: v for k, v in first_uniq_key.items() if type(v) == list})[0]
         # Exclude the array_key and the excluded headers from the array
-        main_object_keys = [x for x in list(first_uniq_key) if (x not in self._exclude_fields) and (x != array_key)]
+        main_object_keys = [x for x in list(first_uniq_key) if (x not in self.filter.exclude_attributes) and (x != array_key)]
         return main_object_keys + list(first_uniq_key[array_key][0])
