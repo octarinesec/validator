@@ -9,11 +9,8 @@ import json
 def validate():
     violations = ProcessViolations().run()
     if Config.output_file:
-        if len(violations.summary.get()):
-            with open(Config.output_file, 'w') as fd:
-                json.dump(violations.violations_list.get(), fd, indent=4, separators=(',', ': '), sort_keys=True)
-        else:
-            json.dump({}, fd, indent=4, separators=(',', ': '), sort_keys=True)
+        with open(Config.output_file, 'w') as fd:
+            json.dump(violations.violations_list.get(), fd, indent=4, separators=(',', ': '), sort_keys=True)
     else:
         print(print_results(violations))
 
