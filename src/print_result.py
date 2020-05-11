@@ -2,7 +2,7 @@ SUCCESS_MESSAGE = "No Violations Detected"
 DEFAULT_ROW_SIZE = 100
 
 
-def print_results(config, violations):
+def print_results(violations):
     result = []
     if len(violations.summary.get()) == 0:
         result.extend(_wrap_text(DEFAULT_ROW_SIZE, _text(SUCCESS_MESSAGE, DEFAULT_ROW_SIZE)))

@@ -1,5 +1,5 @@
-import set_config as config
 import octactl
+from config import Config
 from violations.violations_list import ViolationsList
 from violations.violations_summary import ViolationsSummary
 from violations.attribute_filter import AttributeFilter
@@ -32,7 +32,7 @@ class ProcessViolations():
         return 'None'
 
     def _whitelist_unused_attributes(self):
-        if (not self.include_namesapace) and (not config.always_display_namespace()):
+        if (not self.include_namesapace) and (not Config.always_display_namespace):
             self.attribute_filter.exclude_attributes = "Namespace"
-        if config.helm():
+        if Config.helm:
             self.attribute_filter.exclude_attributes = "Filename"

@@ -23,12 +23,11 @@ def print_with_result(mocker):
 
 
     """
-    config = mocker.MagicMock()
     violation = mocker.MagicMock()
     violation.summary.get = mocker.MagicMock(return_value=["not,empty"])
     violation.violations_list.pritify = mocker.MagicMock(return_value="Some detailed table should be here")
     violation.summary.pritify = mocker.MagicMock(return_value="Shorter text")
-    return print_results(config, violation).split('\n')
+    return print_results(violation).split('\n')
 
 
 @pytest.fixture
@@ -38,10 +37,9 @@ def print_with_no_result(mocker):
     #                                      No Violations Detected                                      #
     ####################################################################################################
     """
-    config = mocker.MagicMock()
     violation = mocker.MagicMock()
     violation.summary.get = mocker.MagicMock(return_value=[])
-    return print_results(config, violation).split('\n')
+    return print_results(violation).split('\n')
 
 
 def test_print_results_header_footer_with_no_violations(print_with_no_result):
