@@ -18,7 +18,7 @@ class Violations():
         self.empty = True
 
     @property
-    def displayable(self) -> List(Displayable):
+    def displayable(self) -> list("Displayable"):
         """ Displayable retrun an array of objects to meet the "Displayable interface" """
         return [self.summary, self.violations_list]
 
