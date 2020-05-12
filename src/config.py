@@ -17,13 +17,17 @@ class MetaConfig(type):
 
     @property
     def always_display_namespace(cls):
-        return os.getenv("ALWAYS_DISPLAY_NAMESPACE") or False
+        return bool(os.getenv("ALWAYS_DISPLAY_NAMESPACE")) or False
 
     @property
     def file_objects(cls):
-        if not os.path.exists(os.getenv("OBJECT_DIR")):
-            print("Cannot find file or diretory at {}".format(os.getenv("OBJECT_DIR")))
-            raise SystemExit
+        try:
+            if not os.path.exists(os.getenv("OBJECT_DIR")):
+                print("Cannot find file or diretory at {}".format(os.getenv("OBJECT_DIR")))
+                raise SystemExit
+        except TypeError as e:
+            print("Missing file input to validate, please make sure either OBJECT_DIR exists")
+            exit(1)
         return os.getenv("OBJECT_DIR")
 
     @property
@@ -32,11 +36,11 @@ class MetaConfig(type):
 
     @property
     def output_file(cls):
-        return os.getenv("OUTPUT_FILE_PATH") or None
+        return os.getenv("OUTPUT_FILE_PATH")
 
     @property
     def domain(cls):
-        return os.getenv("DOMAIN") or None
+        return os.getenv("DOMAIN")
 
     def __getattr__(cls, name):
         if (os.getenv(name.upper())):
@@ -61,6 +65,5 @@ class Config(metaclass=MetaConfig):
                 ','.join(ENV_TO_CHECK)))
             raise SystemExit
         if (not os.getenv("OBJECT_DIR")) and (not os.getenv("HELM_COMMAND")):
-            print("Missing file input to validate, please make sure either FILE_OBJECT or HELM_COMMAND is set")
+            print("Missing file input to validate, please make sure either OBJECT_DIR or HELM_COMMAND is set")
             raise SystemExit
-        return True

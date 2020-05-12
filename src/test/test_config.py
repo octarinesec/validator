@@ -23,7 +23,7 @@ def test_validate_config_with_env_var():
     os.environ['OCTARINE_SESSION_ID'] = "some_session_id"
     os.environ['OCTARINE_SESSION_ACCESSJWT'] = "some_session_access_jwt"
     os.environ['OBJECT_DIR'] = "some_file"
-    assert Config.validate_config() == True
+    assert Config.validate_config() == None
 
 
 def test_namespace_with_env_var_set():
