@@ -6,9 +6,7 @@ class ConfigError(Exception):
 
 
 class MetaConfig(type):
-    """ 
-        This Metaclass sets all configs as attributes for the Config class by using decriptors
-    """
+    """  This Metaclass sets all configs as attributes for the Config class by using decriptors """
     @property
     def helm(cls):
         return os.getenv("HELM_COMMAND")

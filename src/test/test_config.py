@@ -51,8 +51,8 @@ def test_none_exists_file_or_directory_file_objects():
 
 
 def test_with_existing_file_file_objects():
-    os.environ["OBJECT_DIR"] = "src/test/test_set_config.py"
-    assert Config.file_objects == "src/test/test_set_config.py"
+    os.environ["OBJECT_DIR"] = "src/test/test_config.py"
+    assert Config.file_objects == "src/test/test_config.py"
 
 
 def test_with_existing_directory_file_objects():

@@ -5,28 +5,20 @@ DEFAULT_ROW_SIZE = 100
 
 def print_results(violations):
     result = []
-    if len(violations.summary.get()) == 0:
+    if violations.empty:
         t = TextWrapper(DEFAULT_ROW_SIZE)
         result.extend(t.headline(SUCCESS_MESSAGE))
     else:
-        " Set the size of the header and footer by the number of charters in the violation table "
+        # Extract the longes line so it can be used as row_size
+        # Currently set statically TODO: Extract it dynamically from the displayables
         v_list = violations.violations_list.pritify()
         row_size = len(v_list.split("\n")[0])
         t = TextWrapper(row_size)
-        " Set the summary section "
-        result.extend(block(t, "Result Summary:", violations.summary.pritify().split('\n')))
-        " Set the details section "
-        result.extend(block(t, "Violations Details:", v_list.split("\n")))
-        " Set the Error section"
+        for item in violations.displayable:
+            result.extend(t.headline(item.headline))
+            result.extend(item.data)
+            result.extend([t.line, "\n", "\n"])
     return '\n'.join(result)
-
-
-def block(t_hander, headline_text, data):
-    r = []
-    r.extend(t_hander.headline(headline_text))
-    r.extend(data)
-    r.extend([t_hander.line, "\n", "\n"])
-    return r
 
 
 class TextWrapper():
