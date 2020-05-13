@@ -1,8 +1,10 @@
 
 from tabulate import tabulate
+from violations.desplayable import Displayable
+from copy import deepcopy
 
 
-class ViolationsList():
+class ViolationsList(Displayable):
     VIOLATION_MAP = {
         "Violation Name": 'violation_name',
         "Violation Category": 'violation_category'
@@ -23,6 +25,13 @@ class ViolationsList():
          }
 
     """
+    @property
+    def headline(self):
+        return "Violations Details:"
+
+    @property
+    def data(self):
+        return self.pritify().split('\n')
 
     def __init__(self, f):
         self.filter = f
@@ -42,7 +51,7 @@ class ViolationsList():
 
     def pritify(self):
         # Make a copy of violations so it can be mutated
-        violations_for_display = self.violations
+        violations_for_display = deepcopy(self.violations)
         violations_list = [self._setHeaders()]
         for uniq_key in violations_for_display.keys():
             # Remove the excluded fields

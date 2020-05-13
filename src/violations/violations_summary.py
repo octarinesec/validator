@@ -6,6 +6,14 @@ class ViolationsSummary():
         self.summary = {}
         self.filter = f
 
+    @property
+    def headline(self):
+        return "Result Summary:"
+
+    @property
+    def data(self):
+        return self.pritify().split('\n')
+
     def set(self, violations, metadata, key):
         self.summary[key] = {**metadata, 'Violations': len(violations)}
 

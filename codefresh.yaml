@@ -47,7 +47,7 @@ steps:
     when:
       condition:
         all:
-          triggerByRelease: "'${{CF_RELEASE_TAG}}' == 'true'"
+          triggerByRelease: 'includes("${{CF_RELEASE_TAG}}", "{{CF_RELEASE_TAG}}") == false'
 
     tags:
       - "${{CF_RELEASE_TAG}}"
